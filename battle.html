@@ -11,23 +11,69 @@
 </head>
 
 <body>
-    <nav class="d-flex flex-column align-items-center">
-        <h1 class="d-flex justify-content-center pt-5 m-5 font-weight-bold">Combat Simulator</h1>
+    <nav class="navbar bg-dark">
+        <div class="container-fluid">
+            <span class="navbar-brand text-white font-weight-bold">Combat Simulator</span>
+        </div>
     </nav>
+    <br>
     <main class="container">
-        <section class="row">
-            <div class="card" id="game">
+        <section class="row justify-content-center">
+            <div class="card col-lg-6 p-5">
+                <p>HP: 100/100</p>
+                <p>Mana: 100/100</p>
+            </div>
+            <div class="card col-12 col-lg-4 p-3 align-items-center" id="enemy"></div>
+            
+            <!-- textarea is for when a action is taken it displays what happened -->
+            <textarea class="col-10 p-3 text-center">WHAT ACTIONS WERE TAKEN</textarea>
 
+            <div class="card col-12 col-lg-4 p-3 align-items-center" id="user"></div>
+            <div class="card col-lg-6 p-5">
+                <p>HP: 100/100</p>
+                <p>Mana: 100/100</p>
+            </div>
+        </section>
+        <br>
+        <section class="row justify-content-center">
+            <!-- <p id="weapons"></p> -->
+            <div class="card col-6 col-lg-2 align-items-center">
+                <button class="btn btn-primary col-12" type="button">Sword</button>
+                <div>
+                    <img src="https://via.placeholder.com/150">
+                </div>
+            </div>
+            <div class="card col-6 col-lg-2 align-items-center">
+                <button class="btn btn-primary col-12" type="button">Staff</button>
+                <div>
+                    <img src="https://via.placeholder.com/150">
+                </div>
+            </div>
+            <div class="card col-6 col-lg-2 align-items-center">
+                <button class="btn btn-primary col-12" type="button">Shield</button>
+                <div>
+                    <img src="https://via.placeholder.com/150">
+                </div>
+            </div>
+            <div class="card col-6 col-lg-2 align-items-center">
+                <button class="btn btn-primary col-12" type="button">HP Potion</button>
+                <div>
+                    <img src="https://via.placeholder.com/150">
+                </div>
+            </div>
+            <div class="card col-6 col-lg-2 align-items-center">
+                <button class="btn btn-primary col-12" type="button">Mana Potion</button>
+                <div>
+                    <img src="https://via.placeholder.com/150">
+                </div>
             </div>
         </section>
     </main>
-
-    <p id="weapons"></p>
     
-    <script>
+    <!-- <script>
         var weapons = JSON.parse(localStorage.getItem("weapons", weapons));
         document.querySelector("#weapons").textContent = weapons;
-    </script>
+    </script> -->
         <script src="./assets/js/battle.js"></script>
 </body>
 
