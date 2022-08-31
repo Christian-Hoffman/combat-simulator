@@ -121,3 +121,7 @@ phase3.addEventListener("click", function(event){
     window.location.replace("battle.html");
 })
 
+
+document.querySelector("#homeButton").addEventListener("click", function(){
+    window.location.replace("index.html");
+})
