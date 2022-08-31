@@ -11,8 +11,13 @@
 <body>
     <nav class="d-flex flex-column align-items-center">
     <h1 class="d-flex justify-content-center pt-5 m-5 font-weight-bold">Combat Simulator</h1>
-    <button class="d-flex p-3 mt-5 btn bg-secondary">Start</button>
+    <button class="d-flex p-3 mt-5 btn bg-secondary" id="startButton">Start</button>
 </nav>  
-    <script src="./assets/script.js"></script>
+<script> 
+document.querySelector("#startButton").addEventListener("click", function(){
+    window.location.replace("battle.html");
+})
+
+</script>
 </body>
 </html>
