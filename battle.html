@@ -11,12 +11,24 @@
 </head>
 
 <body>
-    <p id="weapons"></p>
+    <nav class="d-flex flex-column align-items-center">
+        <h1 class="d-flex justify-content-center pt-5 m-5 font-weight-bold">Combat Simulator</h1>
+    </nav>
+    <main class="container">
+        <section class="row">
+            <div class="card" id="game">
 
+            </div>
+        </section>
+    </main>
+
+    <p id="weapons"></p>
+    
     <script>
         var weapons = JSON.parse(localStorage.getItem("weapons", weapons));
         document.querySelector("#weapons").textContent = weapons;
     </script>
+        <script src="./assets/js/battle.js"></script>
 </body>
 
 </html>
