@@ -1,10 +1,9 @@
-.customMiddlePage{
+.customMiddlePage {
     padding-top: 300px;
 }
 
-
 @media screen and (max-width: 576px) {
-    .customMiddlePage{
+    .customMiddlePage {
         padding-top: 0px;
     }
 }
