@@ -1,3 +1,5 @@
+var weaponPhotos = [];
+
 var phase1 = document.querySelector("#phase1");
 var phase2 = document.querySelector("#phase2");
 var phase3 = document.querySelector("#phase3");
@@ -31,16 +33,19 @@ phase1.addEventListener("click", function (event) {
     if (click == "bone") {
         choice1 = true;
         weapons.push("Bone");
+        weaponPhotos.push('bswrd');
         screenSelector(2)
     }
     else if (click == "hero") {
         choice2 = true;
         weapons.push("Hero");
+        weaponPhotos.push('hswrd');
         screenSelector(2)
     }
     else if (click == "demon") {
         choice3 = true;
         weapons.push("Demon");
+        weaponPhotos.push('dswrd');
         screenSelector(2)
     }
 
@@ -60,16 +65,19 @@ phase2.addEventListener("click", function (event) {
     if (click == "nature") {
         choice1 = true;
         weapons.push("Nature");
+        weaponPhotos.push('nstff');
         screenSelector(3);
     }
     else if (click == "healing") {
         choice2 = true;
         weapons.push("Healing");
+        weaponPhotos.push('hstff');
         screenSelector(3);
     }
     else if (click == "fire") {
         choice3 = true;
         weapons.push("Fire");
+        weaponPhotos.push('fstff');
         screenSelector(3);
     }
 
@@ -90,19 +98,23 @@ phase3.addEventListener("click", function (event) {
 
     if (click == "small") {
         weapons.push("Small");
+        weaponPhotos.push('sshld');
     }
 
     else if (click == "medium") {
         weapons.push("Medium");
+        weaponPhotos.push('mshld');
     }
     else if (click == "body") {
         weapons.push("Body");
+        weaponPhotos.push('bshld');
     }
 
 
-
     localStorage.setItem("weapons", JSON.stringify(weapons));
+    localStorage.setItem("photos", JSON.stringify(weaponPhotos));
     window.location.replace("battle.html");
+    
 })
 
 document.querySelector("#homeButton").addEventListener("click", function () {

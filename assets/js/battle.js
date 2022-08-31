@@ -1,5 +1,5 @@
 //api for random character generator
-var randomPerson = `https://randomuser.me/api/?results=1&inc=name,dob,picture`;
+var randomPerson = `https://randomuser.me/api/?results=1&inc=name,dob,picture&nat=us`;
 
 var toJSON = function(response) {
     return response.json();
@@ -58,7 +58,6 @@ fetch(randomPerson)
 
 // grabs weapon selections from localStorage
 var weapons = JSON.parse(localStorage.getItem("weapons", weapons));
-// document.querySelector("#weapons").textContent = weapons;
 
 var swordSelection = weapons[0];
 var staffSelection = weapons[1];
@@ -71,3 +70,32 @@ document.querySelector('#sword').textContent = swordSelection + ' ' + 'Sword';
 document.querySelector('#staff').textContent = staffSelection + ' ' + 'Staff';
 document.querySelector('#shield').textContent = shieldSelection + ' ' + 'Shield';
 
+var photos = JSON.parse(localStorage.getItem("photos", photos));
+
+var displaySwordPic = document.querySelector('#swordPic');
+var displayStaffPic = document.querySelector('#staffPic');
+var displayShieldPic = document.querySelector('#shieldPic');
+
+var swordPhoto = photos[0];
+var staffPhoto = photos[1];
+var shieldPhoto = photos[2];
+console.log(swordPhoto);
+console.log(staffPhoto);
+console.log(shieldPhoto);
+
+var imgSword = document.createElement('img');
+var imgStaff = document.createElement('img');
+var imgShield = document.createElement('img');
+
+imgSword.src = './assets/photos/' + swordPhoto +'.png';
+imgSword.height = 200;
+
+imgStaff.src = './assets/photos/' + staffPhoto +'.png';
+imgStaff.height = 200;
+
+imgShield.src = './assets/photos/' + shieldPhoto +'.png';
+imgShield.height = 200;
+
+displaySwordPic.appendChild(imgSword);
+displayStaffPic.appendChild(imgStaff);
+displayShieldPic.appendChild(imgShield);
