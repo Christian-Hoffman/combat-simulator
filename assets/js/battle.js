@@ -54,3 +54,20 @@ fetch(randomPerson)
     console.log('Age: ', results.results[0].dob.age);
     console.log('Pic: ', results.results[0].picture.large);
 });
+
+
+// grabs weapon selections from localStorage
+var weapons = JSON.parse(localStorage.getItem("weapons", weapons));
+// document.querySelector("#weapons").textContent = weapons;
+
+var swordSelection = weapons[0];
+var staffSelection = weapons[1];
+var shieldSelection = weapons[2];
+console.log(swordSelection);
+console.log(staffSelection);
+console.log(shieldSelection);
+
+document.querySelector('#sword').textContent = swordSelection + ' ' + 'Sword';
+document.querySelector('#staff').textContent = staffSelection + ' ' + 'Staff';
+document.querySelector('#shield').textContent = shieldSelection + ' ' + 'Shield';
+

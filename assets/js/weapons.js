@@ -30,17 +30,17 @@ phase1.addEventListener("click", function (event) {
     var click = event.target.id;
     if (click == "bone") {
         choice1 = true;
-        weapons.push("bone");
+        weapons.push("Bone");
         screenSelector(2)
     }
     else if (click == "hero") {
         choice2 = true;
-        weapons.push("hero");
+        weapons.push("Hero");
         screenSelector(2)
     }
     else if (click == "demon") {
         choice3 = true;
-        weapons.push("demon");
+        weapons.push("Demon");
         screenSelector(2)
     }
 
@@ -59,17 +59,17 @@ phase2.addEventListener("click", function (event) {
     var click = event.target.id;
     if (click == "nature") {
         choice1 = true;
-        weapons.push("nature");
+        weapons.push("Nature");
         screenSelector(3);
     }
     else if (click == "healing") {
         choice2 = true;
-        weapons.push("healing");
+        weapons.push("Healing");
         screenSelector(3);
     }
     else if (click == "fire") {
         choice3 = true;
-        weapons.push("fire");
+        weapons.push("Fire");
         screenSelector(3);
     }
 
@@ -89,14 +89,14 @@ phase3.addEventListener("click", function (event) {
     var click = event.target.id;
 
     if (click == "small") {
-        weapons.push("small");
+        weapons.push("Small");
     }
 
     else if (click == "medium") {
-        weapons.push("medium");
+        weapons.push("Medium");
     }
     else if (click == "body") {
-        weapons.push("body");
+        weapons.push("Body");
     }
 
 
