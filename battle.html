@@ -14,29 +14,34 @@
 <body>
     <nav class="navbar bg-dark">
         <div class="container-fluid">
-            <span class="navbar-brand text-white font-weight-bold">Combat Simulator</span>
+            <span class="navbar-brand text-white font-weight-bold">
+                <p>Combat Simulator</p>
+                <p id="endButton">End Battle</p>
+            </span>
+            
         </div>
     </nav>
     <br>
     <main class="container">
+        <!-- enemy stats -->
         <section class="row justify-content-center">
             <div class="card col-lg-6 p-5" id="ehealth">
-                <p>HP: 100/100</p>
-                <p>Mana: 100/100</p>
+                <p id="eHealth">Health 100/100</p>
+                <p id="eMana">Mana 100/100</p>
             </div>
             <div class="card col-12 col-lg-4 p-3 align-items-center" id="enemy"></div>
             
             <!-- textarea is for when a action is taken it displays what happened -->
             <div class="card col-10 p-4 text-center" id="mid">WHAT ACTIONS WERE TAKEN</div>
-
+            <!-- player stats -->
             <div class="card col-12 col-lg-4 p-3 align-items-center" id="user"></div>
             <div class="card col-lg-6 p-5" id="uhealth">
-                <p>HP: 100/100</p>
-                <p>Mana: 100/100</p>
+                <p id="pHealth">Health 100/100</p>
+                <p id="pMana">Mana 100/100</p>
             </div>
         </section>
         <br>
-        <section class="row justify-content-center">
+        <section class="row justify-content-center" id="container">
             <p id="weapons"></p>
             <div class="card col-6 col-lg-2 align-items-center" id="wcard">
                 <button id="sword" class="btn btn-primary col-12" type="button"></button>
@@ -54,13 +59,13 @@
                 </div>
             </div>
             <div class="card col-6 col-lg-2 align-items-center" id="wcard">
-                <button class="btn btn-primary col-12" type="button">HP Potion</button>
+                <button id="health" class="btn btn-primary col-12" type="button">HP Potion</button>
                 <div>
                     <img src="./assets/photos/health.png" height="200px">
                 </div>
             </div>
             <div class="card col-6 col-lg-2 align-items-center" id="wcard">
-                <button class="btn btn-primary col-12" type="button">Mana Potion</button>
+                <button id="mana" class="btn btn-primary col-12" type="button">Mana Potion</button>
                 <div>
                     <img src="./assets/photos/mana.png" height="200px">
                 </div>
