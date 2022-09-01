@@ -10,6 +10,8 @@ var originalEHealth = 100;
 var originalEMana = 100;
 var originalPHealth = 100;
 var originalPMana = 100;
+var originalHPot = 2;
+var originalMPot = 2;
 
 
 //gets random enemy and displays their information on screen
@@ -110,42 +112,52 @@ displayShieldPic.appendChild(imgShield);
 
 
 
-
+var actions = document.querySelector("#mid");
 var eHealthId = document.querySelector("#eHealth");
 var eManaId = document.querySelector("#eMana");
 var pHealthId = document.querySelector("#pHealth");
 var pManaId = document.querySelector("#pMana");
+var hPotId = document.querySelector("#hPot");
+var mPotId = document.querySelector("#mPot");
 var eHealth = originalEHealth
 var eMana = originalEMana;
 var pHealth = originalPHealth;
 var pMana = originalPMana;
+var hPot = originalHPot;
+var mPot = originalMPot;
 var block;
 
 
 
 var pTurn = function (click) {
+    //If user chooses sword button
     if (click == "sword") {
         if (weapons[0] == "Bone") {
             eHealth -= 20;
+            actions.textContent = "You attacked and did 20 Damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
         }
 
         else if (weapons[0] == "Hero") {
             eHealth -= 35;
+            actions.textContent = "You attcked and did 35 Damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
         }
 
         else if (weapons[0] == "Demon") {
             if (Math.floor(Math.random() * 20) == 0) {
                 eHealth = 0;
+                actions.textContent= "You attacked and instantly killed your enemy!"
                 eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
             }
-
+            else{
             eHealth -= 35;
+            actions.textContent = "You attacked and did 35 damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
-
+            }
         }
     }
+    //if user chooses staff button
     if (click == "staff") {
         if (pMana >= 25) {
             if (weapons[1] == "Nature") {
@@ -154,24 +166,32 @@ var pTurn = function (click) {
                 if (pHealth < 85) {
                     p += 15;
                     pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
+                    actions.textContent = "You did 15 damage and healed 15 health!";
                 }
                 else {
                     pHealth = 100;
+                    actions.textContent = "You did 15 damage and healed to full health!";
                 }
             }
             else if (weapons[1] == "Healing") {
                 if (pHealth < 70) {
                     p += 30;
                     pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
+                    actions.textContent = "You Healed 30 health!";
                 }
                 else {
                     pHealth = 100;
+                    actions.textContent = "You healed to max health!";
                 }
             }
             else if (weapons[1] == "Fire") {
                 eHealth -= 30;
                 if (Math.floor(Math.random() * 5) == 0) {
                     eHealth -= 10;
+                    actions.textContent = "You did 30 damage and also a extra 10 damage for a total of 40 damage to the enemy!";
+                }
+                else{
+                    actions.textContent = 'You did 30 damage!';
                 }
 
                 eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
@@ -181,26 +201,76 @@ var pTurn = function (click) {
         }
 
         else {
-            document.querySelector("#mid").textContent = "You do not have enough mana to cast a spell!";
+            actions.textContent = "You do not have enough mana to cast a spell!";
         }
     }
+
+
+    //if user chooses shield button
     if (click == "shield"){
         if(weapons[2] == "Small"){
            localStorage.setItem("shield", .5);
         }
         else if(weapons[2] == "Medium"){
-            localStorage.setItem("shield")
+            localStorage.setItem("shield", .75)
+        }
+        else if(weapons[2] == "Body"){
+            localStorage.setItem("shield", .750);
+        }
+        actions.textContent = "You put your guard up!";
+
+    }
+    if(click == "health"){
+        if(hPot > 0){
+            hPot--;
+         if(pHealth < 50){
+            pHealth+= 50;
+            actions.textContent = "You used a health potion and gained 50 health!";
+            pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
+            hPotId.textContent = "Health Potions: " + hPot + "/" +originalHPot;
+         }
+         else{
+            pHealth = 100;
+            actions.textContent = "You used a health potion and healed to max health!";
+            pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
+            hPotId.textContent = "Health Potions: " + hPot + "/" + originalHPot;
+          }
+        }
+        else{
+            actions.textContent = "You dont have anymore health potions!";
         }
     }
-
+    if(click == "mana"){
+        if(mPot > 0){
+        mPot--;
+        if(pMana < 50){
+            pMana += 50;
+            actions.textContent = "You used a mana potion and gained 50 mana!";
+            pManaId.textContent = "Mana: " + pMana + "/" + originalPMana;
+            mPotId.textContent = "Mana Potions: " + mPot +"/" + originalMPot
+        }
+        else{
+            pMana = 100;
+            actions.textContent = "You used a mana potiona and gained max mana!";
+            pManaId.textContent = "Mana: " + pMana + "/" + originalPMana;
+            mPotId.textContent = "Mana Potions: " + mPot + "/" + originalMPot;
+        }
+        }
+        else{
+            actions.textContent = "You dont have anymore mana potions!";
+        }
+    }
 }
 
+var eTurn = function(){
 
+}
 
 
 document.querySelector("#container").addEventListener("click", function (event) {
     var click = event.target.id;
     pTurn(click);
+    setInterval(eTurn, 1000);
 })
 
 
