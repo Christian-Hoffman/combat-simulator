@@ -9,7 +9,7 @@
 <br>
 <br>
 ## Description
-[Combat Simulator](https://github.com/Christian-Hoffman/combat-simulator) \
+[Combat Simulator]() \
 'description of project here'
 <br>
 <br>
