@@ -37,6 +37,7 @@ fetch(randomPerson)
         console.log('Name: ', results.results[0].name.first + ' ' + results.results[0].name.last);
         console.log('Age: ', results.results[0].dob.age);
         console.log('Pic: ', results.results[0].picture.large);
+        localStorage.setItem("enemyName", JSON.stringify(results.results[0].name));
     });
 
 //gets random user character and displays their information on screen
@@ -130,6 +131,7 @@ var block;
 
 
 var pTurn = function (click) {
+    var eName = JSON.parse(localStorage.getItem("enemyName", eName));
     //If user chooses sword button
     if (click == "sword") {
         if (weapons[0] == "Bone") {
@@ -188,10 +190,10 @@ var pTurn = function (click) {
                 eHealth -= 30;
                 if (Math.floor(Math.random() * 5) == 0) {
                     eHealth -= 10;
-                    actions.textContent = "You did 30 damage and also a extra 10 damage for a total of 40 damage to the enemy!";
+                    actions.textContent = "You did 30 damage and also a extra 10 damage for a total of 40 damage to " + eName.first + "!";
                 }
                 else{
-                    actions.textContent = 'You did 30 damage!';
+                    actions.textContent = 'You did 30 damage to ' + eName.first + '!';
                 }
 
                 eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
@@ -262,15 +264,66 @@ var pTurn = function (click) {
     }
 }
 
+
+
+var counter = 0;
+
 var eTurn = function(){
+var enemyChoice = Math.floor(Math.random()*3);
+    if(enemyChoice == 0){
+        attack();
+    }
+    else if(enemyChoice == 1){
+        shield();
+    }
+    else if (enemyChoice == 2){
+        heal();
+    }
 
 }
+
+
+
+var attack = function(){
+    if(counter == 3){
+        counter = 0;
+        var secondary =  Math.floor(Math.random() * 2)
+        if(secondary == 0){
+            shield();
+        }
+        else{
+            heal();
+        }
+    }
+    else{
+        var shielded = localStorage.getItem("shield", shielded);
+        if(shielded !== undefined){
+            if(shielded == .5){
+                pHealth -= 17;
+                actions.textContent = eName.first + " attacked but only did 17 damage!";
+                pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
+            } 
+
+            
+        }
+    }
+
+}
+var shield = function(){
+
+}
+var heal = function(){
+
+}
+
+
 
 
 document.querySelector("#container").addEventListener("click", function (event) {
     var click = event.target.id;
     pTurn(click);
-    setInterval(eTurn, 1000);
+    setTimeout(eTurn, 1000);
+    localStorage.setItem("shield", undefined);
 })
 
 
