@@ -64,8 +64,8 @@ fetch(randomQuote)
     .then(function(results) {
         var quoteEl = document.querySelector('.quote')
         var nameE1 = document.querySelector('.name')
-        quoteEl.textContent = results.content
-        nameE1.textContent = results.author
+        quoteEl.textContent = '"' + results.content + '"';
+        nameE1.textContent = '- ' + results.author;
     });
 </script>
 
