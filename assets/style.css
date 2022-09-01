@@ -58,3 +58,8 @@
         padding-top: 0px;
     }
 }
+
+.container-fluid {
+    background-color: black;
+    height: 700px;
+}
