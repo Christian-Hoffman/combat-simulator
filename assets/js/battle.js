@@ -6,22 +6,25 @@ var toJSON = function (response) {
 };
 
 // declaration of values
-var originalEHealth = 100;
-var originalEMana = 100;
+
 var originalPHealth = 100;
 var originalPMana = 100;
 var originalHPot = 2;
 var originalMPot = 2;
-
-
+var originalEHealth = 200;
+var originalEMana = 150;
+var enemyEl = document.querySelector('#enemy');
 //gets random enemy and displays their information on screen
+var randomEnemy = function(){
 fetch(randomPerson)
     .then(toJSON)
     .then(function (results) {
-        var enemyEl = document.querySelector('#enemy');
+        var enemyStats = [200, 150];
         var h2El = document.createElement('h2');
         var pEl = document.createElement('p');
         var imgEl = document.createElement('img');
+        originalEHealth = 200;
+        originalEMana = 150;
         var enemyPhoto = results.results[0].picture.large;
         h2El.textContent = results.results[0].name.first + ' ' + results.results[0].name.last;
         pEl.textContent = results.results[0].dob.age;
@@ -33,13 +36,24 @@ fetch(randomPerson)
         enemyEl.appendChild(h2El);
         enemyEl.appendChild(pEl);
         enemyEl.appendChild(imgEl);
+        document.querySelector("#eHealth").textContent = "Health: " + originalEHealth + "/" + originalEHealth
+        document.querySelector("#eMana").textContent = "Mana: " + originalEMana + "/" + originalEMana
         console.log(results);
         console.log('Name: ', results.results[0].name.first + ' ' + results.results[0].name.last);
         console.log('Age: ', results.results[0].dob.age);
         console.log('Pic: ', results.results[0].picture.large);
         localStorage.setItem("enemyName", JSON.stringify(results.results[0].name));
+        localStorage.setItem("enemyStats", enemyStats);
     });
+}
+var deleteEnemy = function(){
 
+    enemyEl.textContent = "";
+
+}
+
+
+randomEnemy();
 //gets random user character and displays their information on screen
 fetch(randomPerson)
     .then(toJSON)
@@ -112,7 +126,7 @@ displayShieldPic.appendChild(imgShield);
 
 
 
-
+localStorage.setItem("shield", undefined);
 var actions = document.querySelector("#mid");
 var eHealthId = document.querySelector("#eHealth");
 var eManaId = document.querySelector("#eMana");
@@ -134,26 +148,31 @@ var pTurn = function (click) {
     var eName = JSON.parse(localStorage.getItem("enemyName", eName));
     //If user chooses sword button
     if (click == "sword") {
+        localStorage.setItem("attacks", true);
         if (weapons[0] == "Bone") {
             eHealth -= 20;
+            localStorage.setItem("damage", 20);
             actions.textContent = "You attacked and did 20 Damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
         }
 
         else if (weapons[0] == "Hero") {
             eHealth -= 35;
+            localStorage.setItem("damage", 35)
+            localStorage.setItem("damage", 35);
             actions.textContent = "You attcked and did 35 Damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
         }
 
         else if (weapons[0] == "Demon") {
-            if (Math.floor(Math.random() * 20) == 0) {
+            if (Math.floor(Math.random()* 0) == 0) {
                 eHealth = 0;
                 actions.textContent= "You attacked and instantly killed your enemy!"
                 eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
             }
             else{
             eHealth -= 35;
+            localStorage.setItem("damage", 35)
             actions.textContent = "You attacked and did 35 damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
             }
@@ -165,8 +184,9 @@ var pTurn = function (click) {
             if (weapons[1] == "Nature") {
                 eHealth -= 15;
                 eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
+                localStorage.setItem("damage", 15);
                 if (pHealth < 85) {
-                    p += 15;
+                    pHealth += 15;
                     pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
                     actions.textContent = "You did 15 damage and healed 15 health!";
                 }
@@ -177,7 +197,7 @@ var pTurn = function (click) {
             }
             else if (weapons[1] == "Healing") {
                 if (pHealth < 70) {
-                    p += 30;
+                    pHealth += 30;
                     pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
                     actions.textContent = "You Healed 30 health!";
                 }
@@ -188,6 +208,7 @@ var pTurn = function (click) {
             }
             else if (weapons[1] == "Fire") {
                 eHealth -= 30;
+                localStorage.setItem("damage", 30);
                 if (Math.floor(Math.random() * 5) == 0) {
                     eHealth -= 10;
                     actions.textContent = "You did 30 damage and also a extra 10 damage for a total of 40 damage to " + eName.first + "!";
@@ -217,7 +238,7 @@ var pTurn = function (click) {
             localStorage.setItem("shield", .75)
         }
         else if(weapons[2] == "Body"){
-            localStorage.setItem("shield", .750);
+            localStorage.setItem("shield", .751);
         }
         actions.textContent = "You put your guard up!";
 
@@ -262,12 +283,20 @@ var pTurn = function (click) {
             actions.textContent = "You dont have anymore mana potions!";
         }
     }
+    if(eHealth <= 0){
+        deleteEnemy();
+        randomEnemy();
+    }
 }
 
 
 
-var counter = 0;
+var aCounter = 0;
+var sCounter = 0;
+var hCounter = 0;
 
+
+// calls for enemys turn
 var eTurn = function(){
 var enemyChoice = Math.floor(Math.random()*3);
     if(enemyChoice == 0){
@@ -280,13 +309,20 @@ var enemyChoice = Math.floor(Math.random()*3);
         heal();
     }
 
+    if(pHealth <= 0){
+        window.location.replace("end-screen.html")
+    }
+
 }
 
 
 
 var attack = function(){
-    if(counter == 3){
-        counter = 0;
+    var eName = JSON.parse(localStorage.getItem("enemyName", eName));
+    // check for too many times
+    
+    if(aCounter == 3){
+        aCounter = 0;
         var secondary =  Math.floor(Math.random() * 2)
         if(secondary == 0){
             shield();
@@ -296,25 +332,98 @@ var attack = function(){
         }
     }
     else{
+        
         var shielded = localStorage.getItem("shield", shielded);
-        if(shielded !== undefined){
-            if(shielded == .5){
+        if(shielded !== "undefined"){
+            
+            if(shielded == .5){ 
                 pHealth -= 17;
                 actions.textContent = eName.first + " attacked but only did 17 damage!";
                 pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
             } 
-
-            
+            else if(shielded == .75){
+                pHealth -= 9;
+                actions.textContent = eName.first + " attacked but only did 9 damage!";
+                pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
+            }
+            else if(shielded == .751){
+                pHealth -= 9;
+                eHealth -= 9;
+                actions.textContent = eName.first + " attacked but only did 9 damage! You also reflected 9 damage!"
+                pHealthId.textContent = "Health: " + pHealth + "/" + originalPHealth;
+                eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
+            }
+            localStorage.setItem("shield", "undefined");
         }
+        else{
+            pHealth -= 35;
+            actions.textContent = eName.first + " attacked and did 35 damage to you!";
+            pHealthId.textContent = "Health " + pHealth + "/" + originalPHealth;
+        }
+        aCounter++;
     }
 
 }
 var shield = function(){
-
+    var correct = localStorage.getItem("attacks", correct);
+    var eName = JSON.parse(localStorage.getItem("enemyName", eName));
+    if(sCounter == 3){
+        sCounter = 0;
+        var secondary = Math.floor(Math.random * 2);
+        if(secondary = 0){
+            attack();
+        }
+        else{
+            heal();
+        }
+    }
+    else{
+    if(correct){
+        var attack = JSON.parse(localStorage.getItem("damage", attack))/2;
+        eHealth += attack;
+        actions.textContent = "But, " + eName.first + " blocked your attack and you did half damage!";   
+        eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
+    }
+    
 }
+}
+
 var heal = function(){
+    var eName = JSON.parse(localStorage.getItem("enemyName", eName));
+    if (hCounter == 3){
+        hCounter = 0;
+        var secondary = Math.floor(Math.random() * 2);
+        if (secondary == 0){
+            attack();
+        }
+        else{
+            shield();
+        }
+    }
+    else{
+        if(eMana < 30){
+            actions.textContent = eName.first + " has no mana left, he cannot heal!";
+        }
+        else{
+            if(eHealth < 165){
+                eHealth+= 35;
+                eMana -= 30;
+                actions.textContent = eName.first + " has healed 35 health!"
+                eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
+                eManaId.textContent = "Mana: " + eMana + "/" + originalEMana;
+                
+            }
+            else{
+                eHealth = 200;
+                eMana -= 30;
+                actions.textContent = eName.first + " has head to max health!";
+                eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
+                eManaId.textContent = "Mana: " + eMana + "/" + originalEMana;
+            }
+        }
+        }
+    }
 
-}
 
 
 
@@ -322,8 +431,10 @@ var heal = function(){
 document.querySelector("#container").addEventListener("click", function (event) {
     var click = event.target.id;
     pTurn(click);
+    if(eHealth > 0 ){
     setTimeout(eTurn, 1000);
-    localStorage.setItem("shield", undefined);
+    }
+
 })
 
 
