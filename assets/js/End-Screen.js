@@ -1,5 +1,5 @@
 document.querySelector("#homeButton").addEventListener("click", function () {
-    window.location.replace("weapons.html");
+    window.location.replace("index.html");
 })
 
 
