@@ -12,38 +12,49 @@
     <link rel="stylesheet" href="./assets/style.css">
 </head>
 <header>
-   
+
 </header>
 <body>
-    <div class="container-fluid start-screen d-flex flex-column align-items-center ">
-        <h1 class="display-4">Hello, Hero!</h1>
+    <div class="container-fluid start-screen d-flex flex-column align-items-center">
+        <h1 class="display-4 mt-4">Hello, Hero!</h1>
         <p class="lead">This is where your adventure will start. It will be a long journey but also a rough one. I hope to see how far you can make it!.
         </p>
         <hr class="my-4">
         <p class="quote"></p>
         <p class="name"></p>
+
         <div class="d-flex flex-column align-items-center">
-            <h1 class="d-flex justify-content-center pt-5 m-5 font-weight-bold">Combat Simulator</h1>
+            <h1 class="d-flex justify-content-center pt-3 mt-5 font-weight-bold">Combat Simulator</h1>
             <button class="d-flex p-3 mt-5 btn bg-secondary" id="startButton">Start</button>
         </div>
       </div>
-      <div class="d-flex flex-column align-items-center">
-       <p class="">RULES</p>
-       <p>You can only take one weapon of each tier, so as an example down below there is a bone sword tier one and a fire staff tier three and the medium shild tier two.</p>
-      <div>
-        <p>
-        </p>
-        <img src="./assets/photos/bswrd.png" height="300px">
-        <img src="./assets/photos/fstff.png" height="300px">
-        <img src="./assets/photos/mshld.png" height="300px">
-      </div>
-      </div>
-    <script>
-        document.querySelector("#startButton").addEventListener("click", function () {
-            window.location.replace("weapons.html");
-        })
 
-        var randomQuote = "https://api.quotable.io/random"
+      <div class="container align-items-center pt-4">
+       <p class="fs-3 text-center">RULES</p>
+       <p class="text-center">During weapon selection you will choose a sword, staff, and shield. There are three tiers for each and you may only choose one weapon of each tier as shown below</p>
+       <br>
+      <div class="row justify-content-center">
+          <div class="col-sm-6 col-lg-3 text-center">
+            <p>Bone Sword - Tier 1</p>
+            <img class="overflow-hidden" alt="bone sword" src="./assets/photos/bswrd.png" height="225px">
+        </div>
+        <div class="col-sm-6 col-lg-3 text-center">
+            <p>Fire Staff - Tier 3</p>
+            <img class="overflow-hidden" alt="fire staff" src="./assets/photos/fstff.png" height="225px">
+        </div>
+        <div class="col-sm-6 col-lg-3 text-center">
+            <p>Medium Shield - Tier 2</p>
+            <img class="overflow-hidden" alt="medium shield" src="./assets/photos/mshld.png" height="225px">
+        </div>
+      </div>
+      </div>
+
+<script>
+document.querySelector("#startButton").addEventListener("click", function () {
+    window.location.replace("weapons.html");
+});
+
+var randomQuote = "https://api.quotable.io/random"
 var toJSON = function(response) {
     return response.json();
 };
@@ -55,9 +66,8 @@ fetch(randomQuote)
         var nameE1 = document.querySelector('.name')
         quoteEl.textContent = results.content
         nameE1.textContent = results.author
-    }
-    );
-    </script>
-</body>
+    });
+</script>
 
+</body>
 </html>
