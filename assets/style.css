@@ -9,6 +9,7 @@
  nav {
      color: var(--light);
      background-color: var(--dark);
+     font-family: 'Trykker', serif;
  }
  
  #picframe,
