@@ -22,7 +22,7 @@ var screenSelector = function (state) {
         phase3.style.display = "flex";
     }
 }
-
+//init screen
 screenSelector(1);
 var weapons = [];
 var choice1 = false;
@@ -50,7 +50,7 @@ phase1.addEventListener("click", function (event) {
         weaponPhotos.push('dswrd');
         screenSelector(2)
     }
-
+    //removes chosen tier option for next page
     if (choice1) {
         document.querySelector("#natureArea").classList.add("d-none");
     }
@@ -83,7 +83,7 @@ phase2.addEventListener("click", function (event) {
         weaponPhotos.push('fstff');
         screenSelector(3);
     }
-
+    //removes chosen tier option for next page
     if (choice1) {
         document.querySelector("#smallArea").classList.add("d-none");
     }
@@ -113,12 +113,11 @@ phase3.addEventListener("click", function (event) {
         weapons.push("Body");
         weaponPhotos.push('bshld');
     }
-
-
+    //sending choices to localStorage
     localStorage.setItem("weapons", JSON.stringify(weapons));
     localStorage.setItem("photos", JSON.stringify(weaponPhotos));
     window.location.replace("battle.html");
-    
+
 })
 
 document.querySelector("#homeButton").addEventListener("click", function () {
