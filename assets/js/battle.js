@@ -254,7 +254,7 @@ var pTurn = function (click) {
     //if user chooses shield button
     if (click == "shield") {
         if (weapons[2] == "Small") {
-            localStorage.setItem("shield", .5);
+            localStorage.setItem("s hield", .5);
         }
         else if (weapons[2] == "Medium") {
             localStorage.setItem("shield", .75)
@@ -401,7 +401,7 @@ var attack = function () {
 
 //enemy shield
 var shield = function () {
-    var correct = localStorage.getItem("attacks", correct);
+    var correct = localStorage.getItem("attacks");
     var eName = JSON.parse(localStorage.getItem("enemyName", eName));
     if (sCounter == 3) {
         sCounter = 0;
@@ -415,6 +415,7 @@ var shield = function () {
     }
     else {
         if (correct) {
+            window.alert("Hello World")
             var attack = JSON.parse(localStorage.getItem("damage", attack)) / 2;
             eHealth += attack;
             actions.textContent = "But, " + eName.first + " blocked your attack and you did half damage!";
