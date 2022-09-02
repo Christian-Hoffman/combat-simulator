@@ -395,6 +395,7 @@ var attack = function () {
         }
         aCounter++;
     }
+    localStorage.setItem("attacks", false);
 
 }
 
@@ -464,6 +465,7 @@ var heal = function () {
         }
     }
     localStorage.setItem("shield", "undefined");
+    localStorage.setItem("attacks", false);
 }
 
 
