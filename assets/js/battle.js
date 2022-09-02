@@ -46,7 +46,6 @@ randomEnemy();
 
 // when an enemy is defeated, remove them from screen and display next enemy
 var deleteEnemy = function () {
-
     enemyEl.textContent = "";
     score++;
     document.querySelector("#score").textContent = "Score: " + score;
@@ -62,10 +61,7 @@ var deleteEnemy = function () {
     pManaId.textContent = "Mana: " + pMana + "/" + originalPMana;
     hPotId.textContent = "Health Potions: " + hPot + "/" + originalHPot;
     mPotId.textContent = "Mana Potions: " + mPot + "/" + originalMPot;
-
 }
-
-
 
 //generates random user character from api and displays their information on screen
 fetch(randomPerson)
@@ -87,7 +83,6 @@ fetch(randomPerson)
 
 // grabs weapon selections from localStorage
 var weapons = JSON.parse(localStorage.getItem("weapons", weapons));
-
 var swordSelection = weapons[0];
 var staffSelection = weapons[1];
 var shieldSelection = weapons[2];
@@ -100,7 +95,6 @@ document.querySelector('#staff').textContent = staffSelection + ' ' + 'Staff';
 document.querySelector('#shield').textContent = shieldSelection + ' ' + 'Shield';
 
 var photos = JSON.parse(localStorage.getItem("photos", photos));
-
 var displaySwordPic = document.querySelector('#swordPic');
 var displayStaffPic = document.querySelector('#staffPic');
 var displayShieldPic = document.querySelector('#shieldPic');
@@ -130,7 +124,7 @@ displayStaffPic.appendChild(imgStaff);
 displayShieldPic.appendChild(imgShield);
 
 
-
+//Declaration of global variables
 localStorage.setItem("shield", undefined);
 var actions = document.querySelector("#mid");
 var eHealthId = document.querySelector("#eHealth");
@@ -150,6 +144,7 @@ var reset = false;
 
 // all possible actions user player can take during their turn
 var pTurn = function (click) {
+    //checks for new enemy
     var reset = localStorage.getItem("reset");
     console.log(reset);
     if (reset == "true") {
@@ -178,7 +173,6 @@ var pTurn = function (click) {
             actions.textContent = "You attacked and did 20 Damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
         }
-
         else if (weapons[0] == "Hero") {
             eHealth -= 35;
             localStorage.setItem("damage", 35)
@@ -186,8 +180,8 @@ var pTurn = function (click) {
             actions.textContent = "You attacked and did 35 Damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
         }
-
         else if (weapons[0] == "Demon") {
+            //2% chance for instant kill
             if (Math.floor(Math.random() * 50) == 0) {
                 eHealth = 0;
                 actions.textContent = "You attacked and instantly killed your enemy!"
@@ -201,6 +195,7 @@ var pTurn = function (click) {
             }
         }
     }
+
     //if user chooses staff button
     if (click == "staff") {
         if (pMana >= 25) {
@@ -308,6 +303,7 @@ var pTurn = function (click) {
             actions.textContent = "You do not have anymore mana potions!";
         }
     }
+    //checks for death to replace with new enemy
     if (eHealth <= 0) {
         deleteEnemy();
         randomEnemy();
@@ -328,15 +324,15 @@ var eTurn = function () {
         attack();
     }
     else if (enemyChoice == 1) {
-        if(eHealth < 190){
-        shield();
+        if (eHealth < 190) {
+            shield();
         }
-        else{
+        else {
             var secondary = Math.floor(Math.random() * 2);
-            if(secondary == 0){
+            if (secondary == 0) {
                 attack();
             }
-            else{
+            else {
                 heal();
             }
         }
@@ -370,8 +366,8 @@ var attack = function () {
     else {
 
         var shielded = localStorage.getItem("shield", shielded);
+        //checks for shield option picked
         if (shielded !== "undefined") {
-
             if (shielded == .5) {
                 pHealth -= 17;
                 actions.textContent = eName.first + " attacked but only did 17 damage!";
@@ -423,7 +419,7 @@ var shield = function () {
             actions.textContent = "But, " + eName.first + " blocked your attack and you did half damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
         }
-        else{
+        else {
             actions.textContent = eName.first + " blocked nothing!";
         }
 

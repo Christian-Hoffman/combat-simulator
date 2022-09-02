@@ -14,10 +14,13 @@
 <header>
 
 </header>
+
 <body>
+    <!-- Prompt -->
     <div class="container-fluid start-screen d-flex flex-column align-items-center">
         <h1 class="display-4 mt-4">Hello, Hero!</h1>
-        <p class="lead">This is where your adventure will start. It will be a long journey but also a rough one. I hope to see how far you can make it!.
+        <p class="lead">This is where your adventure will start. It will be a long journey but also a rough one. I hope
+            to see how far you can make it!.
         </p>
         <hr class="my-4">
         <p class="quote"></p>
@@ -27,47 +30,50 @@
             <h1 class="d-flex justify-content-center pt-3 mt-5 font-weight-bold">Combat Simulator</h1>
             <button class="d-flex p-3 mt-5 btn bg-secondary" id="startButton">Start</button>
         </div>
-      </div>
-
-      <div class="container align-items-center pt-4">
-       <p class="fs-3 text-center">RULES</p>
-       <p class="text-center">During weapon selection you will choose a sword, staff, and shield. There are three tiers for each and you may only choose one weapon of each tier as shown below</p>
-       <br>
-      <div class="row justify-content-center">
-          <div class="col-sm-6 col-lg-3 text-center">
-            <p>Bone Sword - Tier 1</p>
-            <img class="overflow-hidden" alt="bone sword" src="./assets/photos/bswrd.png" height="225px">
+    </div>
+    <!-- Rules and Demonstration -->
+    <div class="container align-items-center pt-4">
+        <p class="fs-3 text-center">RULES</p>
+        <p class="text-center">During weapon selection you will choose a sword, staff, and shield. There are three tiers
+            for each and you may only choose one weapon of each tier as shown below</p>
+        <br>
+        <div class="row justify-content-center">
+            <div class="col-sm-6 col-lg-3 text-center">
+                <p>Bone Sword - Tier 1</p>
+                <img class="overflow-hidden" alt="bone sword" src="./assets/photos/bswrd.png" height="225px">
+            </div>
+            <div class="col-sm-6 col-lg-3 text-center">
+                <p>Fire Staff - Tier 3</p>
+                <img class="overflow-hidden" alt="fire staff" src="./assets/photos/fstff.png" height="225px">
+            </div>
+            <div class="col-sm-6 col-lg-3 text-center">
+                <p>Medium Shield - Tier 2</p>
+                <img class="overflow-hidden" alt="medium shield" src="./assets/photos/mshld.png" height="225px">
+            </div>
         </div>
-        <div class="col-sm-6 col-lg-3 text-center">
-            <p>Fire Staff - Tier 3</p>
-            <img class="overflow-hidden" alt="fire staff" src="./assets/photos/fstff.png" height="225px">
-        </div>
-        <div class="col-sm-6 col-lg-3 text-center">
-            <p>Medium Shield - Tier 2</p>
-            <img class="overflow-hidden" alt="medium shield" src="./assets/photos/mshld.png" height="225px">
-        </div>
-      </div>
-      </div>
+    </div>
 
-<script>
-document.querySelector("#startButton").addEventListener("click", function () {
-    window.location.replace("weapons.html");
-});
+    <script>
+        // next Screen
+        document.querySelector("#startButton").addEventListener("click", function () {
+            window.location.replace("weapons.html");
+        });
+        // Random Quote
+        var randomQuote = "https://api.quotable.io/random"
+        var toJSON = function (response) {
+            return response.json();
+        };
 
-var randomQuote = "https://api.quotable.io/random"
-var toJSON = function(response) {
-    return response.json();
-};
- 
-fetch(randomQuote)
-    .then(toJSON)
-    .then(function(results) {
-        var quoteEl = document.querySelector('.quote')
-        var nameE1 = document.querySelector('.name')
-        quoteEl.textContent = '"' + results.content + '"';
-        nameE1.textContent = '- ' + results.author;
-    });
-</script>
+        fetch(randomQuote)
+            .then(toJSON)
+            .then(function (results) {
+                var quoteEl = document.querySelector('.quote')
+                var nameE1 = document.querySelector('.name')
+                quoteEl.textContent = '"' + results.content + '"';
+                nameE1.textContent = '- ' + results.author;
+            });
+    </script>
 
 </body>
+
 </html>
