@@ -188,7 +188,7 @@ var pTurn = function (click) {
         }
 
         else if (weapons[0] == "Demon") {
-            if (Math.floor(Math.random() * 20) == 0) {
+            if (Math.floor(Math.random() * 50) == 0) {
                 eHealth = 0;
                 actions.textContent = "You attacked and instantly killed your enemy!"
                 eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
@@ -417,7 +417,7 @@ var shield = function () {
         }
     }
     else {
-        if (correct) {
+        if (correct == "true") {
             var attack = JSON.parse(localStorage.getItem("damage", attack)) / 2;
             eHealth += attack;
             actions.textContent = "But, " + eName.first + " blocked your attack and you did half damage!";
