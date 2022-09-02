@@ -1,5 +1,6 @@
 var weaponPhotos = [];
 
+// weapon selection phases
 var phase1 = document.querySelector("#phase1");
 var phase2 = document.querySelector("#phase2");
 var phase3 = document.querySelector("#phase3");
@@ -28,6 +29,7 @@ var choice1 = false;
 var choice2 = false;
 var choice3 = false;
 
+// adds sword choice to localStorage
 phase1.addEventListener("click", function (event) {
     var click = event.target.id;
     if (click == "bone") {
@@ -60,6 +62,7 @@ phase1.addEventListener("click", function (event) {
     }
 })
 
+// adds staff choice to localStorage
 phase2.addEventListener("click", function (event) {
     var click = event.target.id;
     if (click == "nature") {
@@ -93,6 +96,7 @@ phase2.addEventListener("click", function (event) {
 
 })
 
+// adds shield choice to localStorage
 phase3.addEventListener("click", function (event) {
     var click = event.target.id;
 

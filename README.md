@@ -8,16 +8,18 @@
 5. [Credits](#credits)
 <br>
 <br>
+
 ## Description
-[Combat Simulator]() \
+[Combat Simulator](https://christian-hoffman.github.io/combat-simulator/) \
 'description of project here'
 <br>
 <br>
 
 ## Technology Used
 [Bootstrap v5.2](https://getbootstrap.com/docs/5.2/getting-started/introduction/) \
-[Random User Generator](https://randomuser.me/api/?results=1) \
-[Random Quotes](https://api.quotable.io/random)
+[Random User Generator API](https://randomuser.me/api/?results=1) \
+[Random Quotes API](https://api.quotable.io/random) \
+[Google Fonts](https://fonts.google.com/)
 <br>
 <br>
 
@@ -25,10 +27,12 @@
 ![Combat Simulator]()
 <br>
 <br>
+
 ## Future Developments
 'future developments here'
 <br>
 <br>
+
 ## Credits
 [Christian Hoffman](https://github.com/Christian-Hoffman) \
 [Jacob Lockhart](https://github.com/Revilite) \
