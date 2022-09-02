@@ -2,7 +2,7 @@ document.querySelector("#homeButton").addEventListener("click", function () {
     window.location.replace("index.html");
 })
 
-
+// random quote api for end screen
 var randomQuote = "https://api.quotable.io/random"
 var toJSON = function(response) {
     return response.json();

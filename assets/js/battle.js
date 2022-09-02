@@ -14,7 +14,8 @@ var originalMPot = 2;
 var originalEHealth = 200;
 var originalEMana = 150;
 var enemyEl = document.querySelector('#enemy');
-//gets random enemy and displays their information on screen
+
+//generates random enemy from api and displays their information on screen
 var enemyStats = [200, 150];
 localStorage.setItem("enemyStats", JSON.stringify(enemyStats));
 var randomEnemy = function () {
@@ -43,7 +44,7 @@ var randomEnemy = function () {
 }
 randomEnemy();
 
-
+// when an enemy is defeated, remove them from screen and display next enemy
 var deleteEnemy = function () {
 
     enemyEl.textContent = "";
@@ -66,7 +67,7 @@ var deleteEnemy = function () {
 
 
 
-//gets random user character and displays their information on screen
+//generates random user character from api and displays their information on screen
 fetch(randomPerson)
     .then(toJSON)
     .then(function (results) {
@@ -147,7 +148,7 @@ var mPot = originalMPot;
 var block;
 var reset = false;
 
-
+// all possible actions user player can take during their turn
 var pTurn = function (click) {
     var reset = localStorage.getItem("reset");
     console.log(reset);
@@ -182,7 +183,7 @@ var pTurn = function (click) {
             eHealth -= 35;
             localStorage.setItem("damage", 35)
             localStorage.setItem("damage", 35);
-            actions.textContent = "You attcked and did 35 Damage!";
+            actions.textContent = "You attacked and did 35 Damage!";
             eHealthId.textContent = "Health: " + eHealth + "/" + originalEHealth;
         }
 
@@ -254,7 +255,7 @@ var pTurn = function (click) {
     //if user chooses shield button
     if (click == "shield") {
         if (weapons[2] == "Small") {
-            localStorage.setItem("s hield", .5);
+            localStorage.setItem("shield", .5);
         }
         else if (weapons[2] == "Medium") {
             localStorage.setItem("shield", .75)
@@ -265,6 +266,7 @@ var pTurn = function (click) {
         actions.textContent = "You put your guard up!";
 
     }
+    // if user chooses health potion
     if (click == "health") {
         if (hPot > 0) {
             hPot--;
@@ -282,9 +284,10 @@ var pTurn = function (click) {
             }
         }
         else {
-            actions.textContent = "You dont have anymore health potions!";
+            actions.textContent = "You do not have anymore health potions!";
         }
     }
+    // if user chooses mana potion
     if (click == "mana") {
         if (mPot > 0) {
             mPot--;
@@ -296,13 +299,13 @@ var pTurn = function (click) {
             }
             else {
                 pMana = 100;
-                actions.textContent = "You used a mana potiona and gained max mana!";
+                actions.textContent = "You used a mana potion and gained max mana!";
                 pManaId.textContent = "Mana: " + pMana + "/" + originalPMana;
                 mPotId.textContent = "Mana Potions: " + mPot + "/" + originalMPot;
             }
         }
         else {
-            actions.textContent = "You dont have anymore mana potions!";
+            actions.textContent = "You do not have anymore mana potions!";
         }
     }
     if (eHealth <= 0) {
@@ -415,7 +418,6 @@ var shield = function () {
     }
     else {
         if (correct) {
-            window.alert("Hello World")
             var attack = JSON.parse(localStorage.getItem("damage", attack)) / 2;
             eHealth += attack;
             actions.textContent = "But, " + eName.first + " blocked your attack and you did half damage!";
