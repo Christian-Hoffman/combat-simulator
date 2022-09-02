@@ -415,7 +415,6 @@ var shield = function () {
     }
     else {
         if (correct) {
-            window.alert("Hello World")
             var attack = JSON.parse(localStorage.getItem("damage", attack)) / 2;
             eHealth += attack;
             actions.textContent = "But, " + eName.first + " blocked your attack and you did half damage!";
