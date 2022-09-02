@@ -17,5 +17,18 @@ fetch(randomQuote)
         nameE1.textContent = '- ' + results.author;
     }
     );
- 
+
+    var updateScore = function(){
+        var scoreId = document.querySelector("#score");
+
+        var score = localStorage.getItem("score", score);
+        if(score == null){
+            scoreId.textContent = "Score: " + 0;
+        }
+        else{
+        scoreId.textContent  = "Score: " + score;
+        }
+
+    }
+    updateScore();
 
